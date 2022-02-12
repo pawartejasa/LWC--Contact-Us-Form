@@ -1,0 +1,75 @@
+:host {
+    --sds-c-card-heading-font-weight: 500px;
+    --sds-c-card-body-spacing-inline-start: 20px;
+    --sds-c-card-color-border: transparent;
+
+    --sds-c-input-checkbox-width: 30px;
+
+    --sds-c-button-line-height: 2.5rem;
+    --sds-c-button-sizing-border: 0px;
+    --sds-c-button-radius-border: 6px;
+    --sds-c-button-brand-text-color: #fff;
+    --sds-c-button-brand-color-background: #00B6C9;
+    --sds-c-button-brand-color-background-hover: #82C341;
+
+    /* --sds-c-input-color-border-focus: #000 !important; */
+}
+
+.au-body p {
+    max-width: none;
+}
+
+a:focus {
+    outline: auto !important;
+    outline-color: #000 !important;
+}
+
+.page-title {
+    margin: 10px 0;
+    padding-left: 0px;
+    /* background-image: linear-gradient(180deg,#00B6C9 20%,#F26722 20% 40%,#82C341 40% 60%,#F1C400 60% 80%,#EE3780 80%); */
+    background-size: 30px 100%;
+    background-repeat: no-repeat;
+    border-radius: 20px;
+}
+.page-title h1 {
+    color: #00b6c9;
+}
+.page-title h4 {
+    margin-top: 0px;
+    color: #808285;
+}
+
+lightning-layout {
+    padding-bottom: 20px;
+}
+
+lightning-input {
+    padding: 3px 0;
+}
+
+lightning-layout-item h5 {
+    color: #696969;
+    padding-bottom: 5px;
+}
+
+hr {
+    border-color: #d4d4d4;
+}
+
+
+.csBox {
+    margin: 35px 0;
+}
+.csBox .csColumn {
+    background-color: #ededed;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 5px;
+    text-align: center;
+}
+.csBox .reminderText {
+    padding: 10px 0 20px 0;
+    font-size: 16px;
+    font-weight: 500;
+}

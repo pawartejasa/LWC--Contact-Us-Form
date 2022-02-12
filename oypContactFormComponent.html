@@ -1,0 +1,160 @@
+<template>
+    <div class="au-grid au-body oypcss slds-p-horizontal_large">
+
+        <div class="page-title">
+            <h1 class="">Contact Us</h1>
+        </div>
+
+        <div>
+            <p>Contact us on 1800 862 111 to talk to someone about how to find supports or services for your mental health and wellbeing.
+                <br> You can talk to us about which services are right for you, how to access the services or ask any other questions to help you find support.
+                </p>
+            <p>You can also email us at <a href="mailto:support@mindmap.act.gov.au">support@mindmap.act.gov.au</a> or use webchat located at the bottom of the page.</p>
+            <p>If you are having trouble with any content on the MindMap – ACT Youth Portal or require assistance with any part of our site, please contact us, we will be happy to assist.</p>
+            <h3 class="">Schedule A Call</h3>
+            <p class="slds-text-heading_small">You can request a phone call at your preferred time to discuss service options and resources.</p>
+        </div>
+
+        <div class="spinner">
+            <template if:true={isLoading}>
+                <lightning-spinner alternative-text="Loading" variant="brand" size="large">
+                </lightning-spinner>
+            </template>
+        </div>
+
+        <template if:true={DisplayText}>
+            <div class="slds-grid slds-wrap slds-gutters slds-gutters_direct-small">
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-2 slds-m-vertical_x-small">
+                    <lightning-input class="email" type="email" label="Email" name="input1"
+                        placeholder="Enter details..." onchange={handleChange} message-when-type-mismatch="Please provide a valid email.">
+                        </lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-2 slds-m-vertical_x-small">
+                    <lightning-input class="phone" type="tel" label="Phone (required)" name="input2" value=""
+                        placeholder="04********" 
+                        onchange={handleChange}>
+                        </lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-2 slds-m-vertical_x-small">
+                    <lightning-input type="date" class="date" name="inputDate"
+                        label="Preferred Date (required)" min={currentDate} onchange={handleChange}
+                        value=""
+                        placeholder="e.g. 01/01/2001"
+                        message-when-bad-input="You must select a Preferred Date in the future."
+                        field-level-help="NOTE: The date must be today or later.">
+                        </lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-2 slds-m-vertical_x-small">
+                    <lightning-input type="time" class="time" name="inputTime"
+                        label="Preferred Time (required)" min="12:00:00.000Z" max="22:45:00.000Z"
+                        message-when-bad-input="You must select a Preferred Time in the future." 
+                        message-when-range-overflow="You must select a Preferred Time in the future." 
+                        message-when-range-underflow="You must select a Preferred Time in the future."
+                        value=""
+                        placeholder="e.g. 12:00 PM"
+                        onchange={handleChange}
+                        field-level-help="NOTE: The available time slots are between of 12 PM to 11 PM.">
+                        </lightning-input>
+                    <strong>Note:</strong>&nbsp;The time you have selected is based on AEST/AEDT.
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-2 slds-m-vertical_x-small">
+                    <lightning-input type="text" name="input4" label="First Name"
+                        placeholder="Enter details..." onchange={handleChange}>
+                        </lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-2 slds-m-vertical_x-small">
+                    <lightning-input type="text" name="input5" label="Last Name"
+                        placeholder=" Enter details..." onchange={handleChange}>
+                        </lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-2 slds-m-vertical_x-small">
+                    <lightning-input name="input6" class="postcode" label="Postcode" max="9999" placeholder="e.g. 2000"
+                        pattern="[0-9]{4}" onchange={handleChange} message-when-pattern-mismatch="Please provide a valid postcode.">
+                        </lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-2 slds-m-vertical_x-small">
+                    <lightning-input type="text" name="input7" label="Reason for a Call"
+                        placeholder=" Enter reason..." onchange={handleChange}>
+                        </lightning-input>
+                </div>
+
+            </div>
+            <div class="slds-grid slds-grid_align-center slds-m-vertical_large">
+                <lightning-button label="Submit" variant="brand" type="reset"
+                    onclick={caseSubmitHandler}>
+                    </lightning-button>
+            </div>
+        </template>
+
+        <template if:true={DisplayEnd}>
+            <div class="slds-m-top_xx-large slds-align_absolute-center">
+                <span>
+                    <lightning-icon icon-name="utility:success" alternative-text="Success!" variant="success"
+                        title="success variant"></lightning-icon>
+                </span>
+               <!-- <span class="slds-m-left_small">
+                    <h4 class="slds-text-heading_small">Your phone call is scheduled successfully.</h4>
+                </span> -->
+            </div>
+            <span class="slds-m-top_x-large slds-align_absolute-center">
+                <h4 class="slds-text-heading_small"> Your request has been submitted.</h4>
+            </span>
+        </template>
+
+        <hr>
+        
+        <div class="slds-grid slds-wrap csBox">
+            <h3 class="">Crisis Services</h3>
+
+            <div class="slds-col slds-size_1-of-1 reminderText">
+                <p><b>If your situation is life-threatening, call Triple 0 (000) immediately for help or visit your nearest hospital Emergency Department.</b></p>
+                <p>{reminderText}</p>
+            </div>
+
+            <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-3 slds-large-size_1-of-6">
+                <div class="csColumn">
+                    <a aria-label="To lifeline or call 131 114." href={csColumnUrl1} target="_blank" rel="noopener">
+                        <img alt="lifeline graphic" src={csColumnImage1}>
+                    </a>
+                </div>
+            </div>
+            <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-3 slds-large-size_1-of-6">
+                <div class="csColumn">
+                    <a aria-label="To Sane Australia or call 1800 187 263." href={csColumnUrl2} target="_blank" rel="noopener">
+                        <img alt="Sane Australia graphic" src={csColumnImage2}>
+                    </a>
+                </div>
+            </div>
+            <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-3 slds-large-size_1-of-6">
+                <div class="csColumn">
+                    <a aria-label="To Suicide Call Back Service or call 1300 659 467." href={csColumnUrl3} target="_blank" rel="noopener">
+                        <img alt="Suicide Call Back Service graphic" src={csColumnImage3}>
+                    </a>
+                </div>
+            </div>
+            <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-3 slds-large-size_1-of-6">
+                <div class="csColumn">
+                    <a aria-label="To Beyond Blue or call 1300 224 636." href={csColumnUrl4} target="_blank" rel="noopener">
+                        <img alt="Beyond Blue graphic" src={csColumnImage4}>
+                    </a>
+                </div>
+            </div>
+            <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-3 slds-large-size_1-of-6">
+                <div class="csColumn">
+                    <a aria-label="To Kids help line or call 1800 55 1800." href={csColumnUrl5} target="_blank" rel="noopener">
+                        <img alt="Kids help line graphic" src={csColumnImage5}>
+                    </a>
+                </div>
+            </div>
+            <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-3 slds-large-size_1-of-6">
+                <div class="csColumn">
+                    <a aria-label="To A C T Health or call 1800 629 354." href={csColumnUrl6} target="_blank" rel="noopener">
+                        <img alt="A C T Health graphic" src={csColumnImage6}>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <c-oyp-recaptcha onrecaptchaverified={handlerecaptchaverified}></c-oyp-recaptcha>
+    </div>
+</template>
